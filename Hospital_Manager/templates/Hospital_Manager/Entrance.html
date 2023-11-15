@@ -1,0 +1,8 @@
+ 
+
+<h2>Entrance</h2>
+<form method="post" action="{% url 'Entrance' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Enviar</button>
+</form>

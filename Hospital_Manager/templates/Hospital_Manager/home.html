@@ -1,0 +1,64 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        body {
+            display: flex;
+            align-items: top;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url("{% static 'Hospital_Manager/fachada.jpeg' %}");
+            background-size: cover; /* Ajusta a imagem para cobrir toda a tela */
+            background-position: center; /* Centraliza a imagem */
+        }
+
+        h1 {
+            text-align: center;
+            color: red; /* Define a cor do texto para branco para contrastar com o fundo */
+            margin-bottom: 100px;
+            position: relative;
+        }
+       /* Botão estilizado */
+       .button-container {
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            top: 80%;
+        }
+
+        a.button {
+            padding: 15px 30px;
+            background-color: #000000; /* Cor de fundo do botão */
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 16px;
+            transition: background-color 0.3s ease; /* Transição suave na mudança de cor de fundo */
+        }
+
+        /* Efeito de hover para o botão */
+        a.button:hover {
+            background-color: #c0392b; /* Cor de fundo ao passar o mouse */
+        }
+    </style>
+</head>
+<body>
+    <!-- Conteúdo -->
+    <div class="content">
+        <h1>{{ texto }}</h1>
+    </div>
+
+    <!-- Botão estilizado -->
+    <div class="button-container">
+        <a href="{% url 'Buscador' %}" class="button">Buscar</a>
+    </div>
+</body>
+</html>
