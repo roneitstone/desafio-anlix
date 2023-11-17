@@ -14,15 +14,13 @@ class Command(BaseCommand):
 
       nome_arquivo = 'dados\pacientes.json'
 
-      # Carregar o conteúdo do arquivo JSON
+
       with open(nome_arquivo, 'r', encoding='utf-8') as arquivo:
           dados_json = json.load(arquivo)
 
-      # Chave específica que você está procurando (por exemplo, 'nome')
-      chave_procurada = 'nome'
 
  
-      # Verificar se a chave 'nome' existe no JSON
+
       if isinstance(dados_json, list):
         for pessoa in dados_json:
           for chave,valor in pessoa.items():
