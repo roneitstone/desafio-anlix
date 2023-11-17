@@ -31,18 +31,18 @@ class Paciente(models.Model):
         
 class Dado_Pulm(models.Model):
     Ind_Pulm = models.FloatField()
-    Epoch = models.CharField(max_length=10)
+    Epoch = models.CharField(max_length=19)
     cpf = models.CharField(max_length=14);
-    data = models.CharField(max_length=8)
+#    data = models.CharField(max_length=8)
 
     def __str__(self):
         return self.cpf 
     
 class Dado_Car(models.Model):
     Ind_Card = models.FloatField();
-    Epoch = models.CharField(max_length=10)
+    Epoch = models.CharField(max_length=19)
     cpf = models.CharField(max_length=14)
-    data = models.CharField(max_length=8)
+#    data = models.CharField(max_length=8)
     def __str__(self):
         return self.cpf 
     

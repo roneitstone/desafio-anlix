@@ -1,70 +1,19 @@
-import os
+from datetime import datetime, timezone, timedelta
 
+# Valor de época (em segundos)
+epoch_value = 1620066626  # Substitua isso pelo seu valor de época
 
-lista_dados = []
-caminho_pasta = 'dados\indice_cardiaco'
-  # Obtém a lista de arquivos na pasta
-for nome_arquivo in os.listdir(caminho_pasta):
-  caminho_absoluto = os.path.join(caminho_pasta, nome_arquivo)
+# Criar um objeto datetime a partir do valor de época
+dt = datetime.fromtimestamp(epoch_value, tz=timezone.utc)
 
-            # Verifica se é um arquivo
-  if os.path.isfile(caminho_absoluto):
-    with open(caminho_absoluto, 'r', encoding='utf-8') as f:
-      dados_arquivo = f.readlines()
-      dados_arquivo=dados_arquivo[1:]
-      lista_dados.append(dados_arquivo)
-      
+# Definir o fuso horário para São Paulo
+fuso_horario_sao_paulo = timezone(timedelta(hours=-3))  # UTC-3
 
-        
-for dados in lista_dados:
-    for aux in dados:
-      aux=aux.rstrip("\n")
-      aux2= aux.split(" ")
-      print(aux2[0])
-print("\n\n\n\n quase la! \n\n\n\n\n\n")
-#vamos mudar bastante aq
-def Buscador(request):
-    # Nome do arquivo JSON
-    nome_arquivo = 'dados\pacientes.json'
+# Converter para o fuso horário de São Paulo
+dt_sao_paulo = dt.astimezone(fuso_horario_sao_paulo)
 
-    # Carregar o conteúdo do arquivo JSON
-    with open(nome_arquivo, 'r', encoding='utf-8') as arquivo:
-        dados_json = json.load(arquivo)
+# Converter para uma string formatada
+data_hora_formatada = dt_sao_paulo.strftime("%Y-%m-%d %H:%M:%S %Z")
 
-    # Chave específica que você está procurando (por exemplo, 'nome')
-    chave_procurada = 'nome'
-    palavra_escrita = request.GET.get('palavra', '').lower()
-
-    string_concatenada = [];
-
-    # Verificar se a chave 'nome' existe no JSON
-    if isinstance(dados_json, list):
-        # Se for uma lista, percorrer os itens e imprimir o valor da chave
-        listnomes = []
-        temp = palavra_escrita.split("%20")
-        palavra_escrita = " ".join(temp)
-
-        for item in dados_json:
-            if chave_procurada in item:
-                valor_da_chave = item[chave_procurada]
-                valor_da_chave = valor_da_chave.lower()
-                listnomes.append(valor_da_chave.split(" "))
-
-                if(palavra_escrita == valor_da_chave):
-                    
-                    #evita que o string sozinho seja separado em caracteres pelo .html
-                    listnomes.clear()
-                    listnomes.append(valor_da_chave)
-                    listnomes.append("")
-
-                    return render(request, './Hospital_Manager/Buscador.html', { 'resultados': listnomes})
-                
-        for i in listnomes:
-            for o in i:
-                semelhantes =process.extractBests(palavra_escrita, i, score_cutoff=70)
-               # print(semelhantes)
-                if(semelhantes != []):
-                    string_concatenada.append(" ".join(i));
-                    break
-  
-    return render(request, './Hospital_Manager/Buscador.html', { 'resultados': string_concatenada})
+# Imprimir a data e hora formatada no fuso horário de São Paulo
+print("Data e hora em São Paulo:", data_hora_formatada)

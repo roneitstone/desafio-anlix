@@ -3,9 +3,10 @@ from django.shortcuts import render
 from .forms import EntranceForm
 from django.shortcuts import render
 import json
-from .models import Paciente
+from .models import Paciente,Dado_Car,Dado_Pulm
 from django.shortcuts import render, get_object_or_404
 import os
+from datetime import datetime
 
 # funcoes auxiliares
  
@@ -91,3 +92,34 @@ def Detalhes_Paciente(request, paciente_nome):
     paciente = get_object_or_404(Paciente, nome=paciente_nome)
     print(paciente.nome)
     return render(request, './Hospital_Manager/Detalhes_Paciente.html', {'paciente': paciente})
+
+def MostRecent (request, paciente_cpf):
+    Dado_car = Dado_Car.objects.filter(cpf__icontains=paciente_cpf)
+
+    Dado_pulm = Dado_Pulm.objects.filter(cpf__icontains=paciente_cpf)
+    datas = []
+    
+    for data in Dado_car:
+        datas.append(data.Epoch)
+    # Converter as strings para objetos datetime
+    datas_convertidas = [datetime.strptime(data, "%d/%m/%Y %H:%M:%S") for data in datas]
+
+    # Encontrar a data e hora mais recente
+    car_recent = max(datas_convertidas)
+    car_recent = car_recent.strftime("%d/%m/%Y %H:%M:%S")
+    datas = []
+    
+    for data in Dado_pulm:
+        datas.append(data.Epoch)
+
+    datas_convertidas = [datetime.strptime(data, "%d/%m/%Y %H:%M:%S") for data in datas]
+
+
+    pulm_recent = max(datas_convertidas)
+    pulm_recent = pulm_recent.strftime("%d/%m/%Y %H:%M:%S")
+
+
+    Dado_car = get_object_or_404(Dado_Car, Epoch = car_recent)
+    Dado_pulm = get_object_or_404(Dado_Pulm, Epoch =pulm_recent)
+
+    return render(request, './Hospital_Manager/MostRecent.html', {'Indice_car': str(Dado_car.Ind_Card),  'Indice_pulm':str(Dado_pulm.Ind_Pulm)})
