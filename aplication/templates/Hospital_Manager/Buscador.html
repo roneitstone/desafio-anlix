@@ -45,8 +45,9 @@
             }
         </script>
     <h2>Resultado:</h2>
-    {% for nome in resultados %}
-        <p><a href="{% url 'Entrance' %}">{{nome}}</a></p>
+    {% for paciente in resultados %}
+        <p><a href="{% url 'Detalhes_Paciente' paciente_nome=paciente %}">{{ paciente }}</a></p>
+    <!--<p><a href="{% url 'Entrance' %}">{{nome}}</a></p>-->
     {% endfor %}
 </body>
 </html>
