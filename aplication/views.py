@@ -65,15 +65,14 @@ def Entrance(request):
             # Processar os dados do formulário aqui
             nome = form.cleaned_data['nome']
             email = form.cleaned_data['email']
-            # Faça o que quiser com os dados
-
+ 
             # Redirecione ou renderize outra página
     else:
         form = EntranceForm()
 
     return render(request, './Hospital_Manager/Entrance.html', {'form': form})
 
-
+#vamos mudar bastante aq
 def Buscador(request):
     # Nome do arquivo JSON
     nome_arquivo = 'dados\pacientes.json'
@@ -117,7 +116,6 @@ def Buscador(request):
                 if(semelhantes != []):
                     string_concatenada.append(" ".join(i));
                     break
-        #todos_objetos = Paciente.objects.all()
-        #print(todos_objetos)
+  
     return render(request, './Hospital_Manager/Buscador.html', { 'resultados': string_concatenada})
 

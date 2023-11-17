@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Paciente(models.Model):
     nome = models.CharField(max_length=250)
     idade = models.IntegerField()
@@ -14,7 +15,7 @@ class Paciente(models.Model):
     senha = models.CharField(max_length=50)
     cep = models.CharField(max_length=9)
     endereco = models.CharField(max_length=250)
-    numero = models.CharField(max_length=9)
+    numero = models.IntegerField()
     bairro = models.CharField(max_length=100)
     cidade = models.CharField(max_length=100)
     estado = models.CharField(max_length=2)
@@ -24,16 +25,24 @@ class Paciente(models.Model):
     peso = models.IntegerField()
     tipo_sanguineo = models.CharField(max_length=3)
     cor = models.CharField(max_length=20)
- 
+    
     def __str__(self):
         return self.nome 
         
 class Dado_Pulm(models.Model):
-    Ind_Pulm = models.FloatField();
+    Ind_Pulm = models.FloatField()
     Epoch = models.CharField(max_length=10)
-    cpf = models.ForeignKey(Paciente, on_delete=models.CASCADE);
+    cpf = models.CharField(max_length=14);
+    data = models.CharField(max_length=8)
 
+    def __str__(self):
+        return self.cpf 
+    
 class Dado_Car(models.Model):
     Ind_Card = models.FloatField();
     Epoch = models.CharField(max_length=10)
-    cpf = models.ForeignKey(Paciente, on_delete=models.CASCADE);
+    cpf = models.CharField(max_length=14)
+    data = models.CharField(max_length=8)
+    def __str__(self):
+        return self.cpf 
+    
