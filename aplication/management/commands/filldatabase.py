@@ -104,10 +104,7 @@ class Command(BaseCommand):
           # Converter para o fuso horário de São Paulo
           dt_sao_paulo = dt.astimezone(fuso_horario_sao_paulo)
 
-          # Converter para uma string formatada
-          data_hora_formatada = dt_sao_paulo.strftime("%d/%m/%Y %H:%M:%S")
-
-          indi = Dado_Car(Ind_Card=aux[2], Epoch=data_hora_formatada, cpf=aux[0])
+          indi = Dado_Car(Ind_Card=aux[2], Epoch=dt_sao_paulo, cpf=aux[0])
           indi.save()
         i+=1
 
@@ -134,9 +131,8 @@ class Command(BaseCommand):
           dt = datetime.fromtimestamp(int(aux[1]), tz=timezone.utc)
           fuso_horario_sao_paulo = timezone(timedelta(hours=-3))  # UTC-3
           dt_sao_paulo = dt.astimezone(fuso_horario_sao_paulo)
-          data_hora_formatada = dt_sao_paulo.strftime("%d/%m/%Y %H:%M:%S")
 
-          indi2 = Dado_Pulm(Ind_Pulm=aux[2], Epoch=data_hora_formatada, cpf=aux[0])
+          indi2 = Dado_Pulm(Ind_Pulm=aux[2], Epoch=dt_sao_paulo, cpf=aux[0])
           indi2.save()
         i+= 1
 # demorou 1.40 segundos no meu computador para terminar o populate

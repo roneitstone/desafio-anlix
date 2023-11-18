@@ -1,5 +1,5 @@
 from django.db import models
-
+from datetime import datetime
 
 class Paciente(models.Model):
     nome = models.CharField(max_length=250)
@@ -31,18 +31,22 @@ class Paciente(models.Model):
         
 class Dado_Pulm(models.Model):
     Ind_Pulm = models.FloatField()
-    Epoch = models.CharField(max_length=19)
+    Epoch = models.DateTimeField(default=datetime.now)
     cpf = models.CharField(max_length=14);
-#    data = models.CharField(max_length=8)
+
+    class Meta:
+        ordering = ['-Epoch']
 
     def __str__(self):
         return self.cpf 
     
 class Dado_Car(models.Model):
     Ind_Card = models.FloatField();
-    Epoch = models.CharField(max_length=19)
+    
     cpf = models.CharField(max_length=14)
-#    data = models.CharField(max_length=8)
+    Epoch = models.DateTimeField(default=datetime.now)
+    class Meta:
+        ordering = ['-Epoch']
     def __str__(self):
         return self.cpf 
     
