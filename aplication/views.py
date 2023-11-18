@@ -5,7 +5,8 @@ from django.shortcuts import render
 from .models import Paciente,Dado_Car,Dado_Pulm
 from django.shortcuts import render, get_object_or_404
 import os
-from datetime import datetime, timedelta
+from .forms import BetweenDatesForm
+from django.urls import reverse
 
 # funcoes auxiliares
  
@@ -109,6 +110,30 @@ def Allinfo (request, paciente_cpf):
    
     objetoscar = Dado_Car.objects.filter(cpf=paciente_cpf)
     objetospulm = Dado_Pulm.objects.filter(cpf=paciente_cpf)
-     
-    print(objetoscar)
+    
+
+
     return render(request, './Hospital_Manager/Allinfo.html', {'objetosCar': objetoscar, 'objetosPulm': objetospulm})
+
+def BetweenDates(request, paciente_cpf):
+    
+    objetoscar = Dado_Car.objects.filter(cpf=paciente_cpf)
+    objetospulm = Dado_Pulm.objects.filter(cpf=paciente_cpf)
+    if request.method == 'POST':
+        form = BetweenDatesForm(request.POST)
+        valor = request.POST.get("start_date")
+        print("\n\n\n\n",valor)
+        if form.is_valid():
+            start_date = form.cleaned_data['start_date']
+            end_date = form.cleaned_data['end_date']
+            print("\n\n\n\n\n",start_date)
+            # Consulta ao banco de dados para obter dados no intervalo de datas
+            objetoscar = objetoscar .filter(data__range=[start_date, end_date])
+            objetospulm = objetospulm.filter(data__range=[start_date, end_date])
+    else:
+        form = BetweenDatesForm()
+        print("\n\n\n aq")
+        # Use reverse para construir a URL reversa de forma dinâmica
+    form_action_url = reverse('BetweenDates', args=[paciente_cpf])
+
+    return render(request, 'Hospital_Manager/BetweenDates.html', {'objetosCar': objetoscar, 'objetosPulm': objetospulm, 'form': form, 'paciente_cpf': paciente_cpf, 'form_action_url': form_action_url})

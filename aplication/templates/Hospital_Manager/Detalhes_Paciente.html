@@ -84,7 +84,7 @@
     <p> <a href="{% url 'MostRecent' paciente_cpf=paciente.cpf  %}" class="button">Buscar caracteristicas recentes</a></p>
     <p></p><a href="{% url 'Allinfo' paciente_cpf=paciente.cpf  %}" class="button">Buscar todas as caracteristicas</a></p>
     <p></p><a href="{% url 'Buscador' %}" class="button">Buscar caracteristicas por data</a></p>
-    <p></p><a href="{% url 'Buscador' %}" class="button">Buscar caracteristicas por periodo</a></p>
+    <p></p><a href="{% url 'BetweenDates' paciente_cpf=paciente.cpf %}" class="button">Buscar caracteristicas por periodo</a></p>
     <p></p><a href="{% url 'Buscador' %}" class="button">Buscar caracteristicas entre valores</a></p>
 
 </div>

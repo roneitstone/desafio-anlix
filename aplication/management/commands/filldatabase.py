@@ -4,7 +4,7 @@ from aplication.models import Paciente, Dado_Car, Dado_Pulm
 import json
 import os
 from datetime import datetime, timezone, timedelta
-
+from django.utils import timezone
 
 class Command(BaseCommand):
   #  help = "import Booms"
@@ -13,7 +13,7 @@ class Command(BaseCommand):
         pass
     def handle(self, *args, **options):
 
-      nome_arquivo = 'dados\pacientes.json'
+      nome_arquivo = 'dados/pacientes.json'
 
 
       with open(nome_arquivo, 'r', encoding='utf-8') as arquivo:
@@ -79,7 +79,7 @@ class Command(BaseCommand):
           models.save()
       # populando o database com os valores
       lista_dados = []
-      caminho_pasta = 'dados\indice_cardiaco'
+      caminho_pasta = 'dados/indice_cardiaco'
         # Obtém a lista de arquivos na pasta
       for nome_arquivo in os.listdir(caminho_pasta):
         caminho_absoluto = os.path.join(caminho_pasta, nome_arquivo)
@@ -97,19 +97,15 @@ class Command(BaseCommand):
           aux= aux2.split(" ")
           # Criar um objeto datetime a partir do valor de época
           dt = datetime.fromtimestamp(int(aux[1]), tz=timezone.utc)
+          dt_sao_paulo = dt -timedelta(hours=3)
 
-          # Definir o fuso horário para São Paulo
-          fuso_horario_sao_paulo = timezone(timedelta(hours=-3))  # UTC-3
 
-          # Converter para o fuso horário de São Paulo
-          dt_sao_paulo = dt.astimezone(fuso_horario_sao_paulo)
-
-          indi = Dado_Car(Ind_Card=aux[2], Epoch=dt_sao_paulo, cpf=aux[0])
+          indi = Dado_Car(data = dt_sao_paulo, Ind_Card=aux[2], Epoch=int(aux[1]), cpf=aux[0])
           indi.save()
         i+=1
 
       lista_dados = []
-      caminho_pasta = 'dados\indice_pulmonar'
+      caminho_pasta = 'dados/indice_pulmonar'
             # Obtém a lista de arquivos na pasta
       for nome_arquivo in os.listdir(caminho_pasta):
         caminho_absoluto = os.path.join(caminho_pasta, nome_arquivo)
@@ -127,12 +123,12 @@ class Command(BaseCommand):
         for aux2 in dados:
           aux2=aux2.rstrip("\n")
           aux= aux2.split(" ")
-
+          #  Criar um objeto datetime a partir do valor de época
           dt = datetime.fromtimestamp(int(aux[1]), tz=timezone.utc)
-          fuso_horario_sao_paulo = timezone(timedelta(hours=-3))  # UTC-3
-          dt_sao_paulo = dt.astimezone(fuso_horario_sao_paulo)
-
-          indi2 = Dado_Pulm(Ind_Pulm=aux[2], Epoch=dt_sao_paulo, cpf=aux[0])
+          
+          dt_sao_paulo = dt -timedelta(hours=3)
+          
+          indi2 = Dado_Pulm(data = dt_sao_paulo,Ind_Pulm=aux[2], Epoch=int(aux[1]), cpf=aux[0])
           indi2.save()
         i+= 1
 # demorou 1.40 segundos no meu computador para terminar o populate

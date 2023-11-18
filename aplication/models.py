@@ -1,6 +1,5 @@
 from django.db import models
 from datetime import datetime
-
 class Paciente(models.Model):
     nome = models.CharField(max_length=250)
     idade = models.IntegerField()
@@ -31,9 +30,9 @@ class Paciente(models.Model):
         
 class Dado_Pulm(models.Model):
     Ind_Pulm = models.FloatField()
-    Epoch = models.DateTimeField(default=datetime.now)
+    Epoch = models.IntegerField()
     cpf = models.CharField(max_length=14);
-
+    data = models.DateTimeField(default=datetime.now)
     class Meta:
         ordering = ['-Epoch']
 
@@ -42,9 +41,9 @@ class Dado_Pulm(models.Model):
     
 class Dado_Car(models.Model):
     Ind_Card = models.FloatField();
-    
+    data = models.DateTimeField(default=datetime.now)
     cpf = models.CharField(max_length=14)
-    Epoch = models.DateTimeField(default=datetime.now)
+    Epoch = models.IntegerField()
     class Meta:
         ordering = ['-Epoch']
     def __str__(self):

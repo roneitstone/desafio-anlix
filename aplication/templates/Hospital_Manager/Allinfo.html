@@ -82,12 +82,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for objeto in objetosPulm %}
+                    {% for objeto in objetosPulm%}
                         <tr>
                             <td>{{ objeto.Ind_Pulm }}</td>
-                            <td>{{ objeto.Epoch }}</td>
+                    
+                            <td>{{ objeto.data}}</td>
+                            
                         </tr>
                     {% endfor %}
+
                 </tbody>
             </table>
         </div>
@@ -102,12 +105,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for objeto in objetosCar %}
+                    {% for objeto in objetosCar%}
                         <tr>
                             <td>{{ objeto.Ind_Card }}</td>
-                            <td>{{ objeto.Epoch }}</td>
+                            <td>{{ objeto.data }}</td>
                         </tr>
                     {% endfor %}
+
+
                 </tbody>
             </table>
         </div>

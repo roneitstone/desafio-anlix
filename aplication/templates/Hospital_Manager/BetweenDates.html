@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dados no Intervalo Selecionado</title>
+
+    <style>
+        /* Estilo básico para a tabela e o slider */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        #dados-container {
+            height: 400px; 
+            overflow-y: auto; 
+        }
+    </style>
+</head>
+<body>
+    <h2>Selecione o Intervalo de Datas</h2>
+    <form method="post" action="{% url 'BetweenDates' paciente_cpf=paciente_cpf %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Buscar Dados</button>
+    </form>
+
+    <h2>Dados no Intervalo Selecionado</h2>
+
+    <div id="dados-container">
+        <h3>Dados do Indice Cardiaco</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Indice Cardiaco</th>
+                    <th>Data</th>
+                    <!-- Adicione outras colunas conforme necessário -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for dado in objetosCar %}
+                    <tr>
+                        <td>{{ dado.Ind_Card }}</td>
+                        <td>{{ dado.data }}</td>
+
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h3>Dados do Dados do Indice Pulmonar</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Indice Pulmonar</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for dado in objetosPulm %}
+                    <tr>
+                        <td>{{ dado.Ind_Pulm}}</td>
+                        <td>{{ dado.data }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+</body>
+</html>
