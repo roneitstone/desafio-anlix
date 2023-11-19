@@ -32,6 +32,12 @@
             position: absolute;
             top: 80%;
         }
+        .button-container2 {
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            top: 70%;
+        }
 
         a.button {
             padding: 15px 30px;
@@ -58,7 +64,10 @@
 
     <!-- Botão estilizado -->
     <div class="button-container">
-        <a href="{% url 'Buscador' %}" class="button">Buscar</a>
+        <p></p><a href="{% url 'Buscador' %}" class="button">Buscar</a></p>
+    </div>
+    <div class="button-container2">
+        <p></p><a href="{% url 'InfoByDate'%}" class="button">Buscar caracteristicas por data</a></p>
     </div>
 </body>
 </html>

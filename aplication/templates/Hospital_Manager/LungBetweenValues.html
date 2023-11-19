@@ -16,11 +16,21 @@
             max-height: 300px; /* Altura máxima para cada tabela */
             overflow-y: auto; /* Adicione rolagem vertical se necessário */
             margin: 10px; /* Adicione espaço entre as tabelas */
+            
+        }
+ 
+        #dados-container {
+            display: flex;
+            height: 300px;
+            overflow-y: auto;
+            justify-content: center; /* Centraliza a tabela horizontalmente */
+            align-items: bottom; /* Centraliza a tabela verticalmente */
         }
 
-        .tables {
-            display: flex;
-            justify-content: space-between; /* Espaçamento igual entre as tabelas */
+        table {
+            border-collapse: collapse;
+            width: 80%; /* Ajuste para ocupar 80% da largura disponível */
+            margin: auto; /* Centraliza horizontalmente usando margin: auto */
         }
 
         form {
@@ -31,7 +41,7 @@
         table {
             border-collapse: collapse;
             width: 48%; /* Ajuste para ocupar 48% para dar espaço para a margem */
-            margin: 1%; /* Adicione espaço entre as tabelas */
+            margin: 1%;  
         }
 
         th, td {
@@ -51,18 +61,11 @@
             margin-bottom: 20px;
             position: relative;
         }
-
-        #dados-container {
-            display: flex;
-            height: 300px;
-            overflow-y: auto;
-            justify-content: space-between; /* Espaçamento igual entre as tabelas */
-        }
     </style>
 </head>
 <body>
     <h2>Selecione o Intervalo de Datas</h2>
-    <form method="post" action="{% url 'BetweenDates' paciente_cpf=paciente_cpf %}">
+    <form method="post" action="{% url 'LungBetweenValues' paciente_nome=paciente_nome %}">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Buscar Dados</button>
@@ -71,28 +74,11 @@
     <h2>Dados no Intervalo Selecionado</h2>
 
     <div id="dados-container" class="tables">
-        <table>
-            <thead>
-                <tr>
-                    <th>Indice Cardiaco</th>
-                    <th>Data</th>
-                    <!-- Adicione outras colunas conforme necessário -->
-                </tr>
-            </thead>
-            <tbody>
-                {% for dado in objetosCar %}
-                    <tr>
-                        <td>{{ dado.Ind_Card }}</td>
-                        <td>{{ dado.data }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
 
         <table>
             <thead>
                 <tr>
-                    <th>Indice Pulmonar</th>
+                    <th>Índice Pulmonar</th>
                     <th>Data</th>
                 </tr>
             </thead>

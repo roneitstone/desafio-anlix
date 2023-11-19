@@ -62,7 +62,7 @@
 </head>
 <body>
     <h2>Selecione o Intervalo de Datas</h2>
-    <form method="post" action="{% url 'BetweenDates' paciente_cpf=paciente_cpf %}">
+    <form method="post" action="{% url 'InfoByDate' %}">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Buscar Dados</button>
@@ -76,6 +76,8 @@
                 <tr>
                     <th>Indice Cardiaco</th>
                     <th>Data</th>
+                    <th>CPF</th>
+
                     <!-- Adicione outras colunas conforme necessário -->
                 </tr>
             </thead>
@@ -84,6 +86,8 @@
                     <tr>
                         <td>{{ dado.Ind_Card }}</td>
                         <td>{{ dado.data }}</td>
+                        <td>{{ dado.cpf }}</td>
+
                     </tr>
                 {% endfor %}
             </tbody>
@@ -94,6 +98,8 @@
                 <tr>
                     <th>Indice Pulmonar</th>
                     <th>Data</th>
+                    <th>CPF</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -101,6 +107,8 @@
                     <tr>
                         <td>{{ dado.Ind_Pulm }}</td>
                         <td>{{ dado.data }}</td>
+                        <td>{{ dado.cpf }}</td>
+
                     </tr>
                 {% endfor %}
             </tbody>

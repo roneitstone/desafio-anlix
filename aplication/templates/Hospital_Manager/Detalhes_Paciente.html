@@ -83,9 +83,11 @@
 
     <p> <a href="{% url 'MostRecent' paciente_cpf=paciente.cpf  %}" class="button">Buscar caracteristicas recentes</a></p>
     <p></p><a href="{% url 'Allinfo' paciente_cpf=paciente.cpf  %}" class="button">Buscar todas as caracteristicas</a></p>
-    <p></p><a href="{% url 'Buscador' %}" class="button">Buscar caracteristicas por data</a></p>
     <p></p><a href="{% url 'BetweenDates' paciente_cpf=paciente.cpf %}" class="button">Buscar caracteristicas por periodo</a></p>
-    <p></p><a href="{% url 'Buscador' %}" class="button">Buscar caracteristicas entre valores</a></p>
+    <p></p><a href="{% url 'CardBetweenValues' paciente_nome=paciente.nome%}" class="button">Buscar Índice Cardíaco entre valores</a></p>
+    <p></p><a href="{% url 'LungBetweenValues' paciente_nome=paciente.nome %}" class="button">Buscar Índice Pulmonar entre valores</a></p>
+    <p></p><a href="{% url 'Chart' %}" class="button">Gráfico de valores das características</a></p>
+    <p></p><a href="{% url 'ExportData' %}" class="button">Gráfico de valores das características</a></p>
 
 </div>
 </body>

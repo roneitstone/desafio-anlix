@@ -13,8 +13,11 @@ class Command(BaseCommand):
         pass
     def handle(self, *args, **options):
 
-      nome_arquivo = 'dados/pacientes.json'
-
+      if(os.name == "nt"):
+            nome_arquivo = 'dados\pacientes.json'
+      else:
+            nome_arquivo = 'dados/pacientes.json'
+        # Obtém a lista de arquivos na pasta  
 
       with open(nome_arquivo, 'r', encoding='utf-8') as arquivo:
           dados_json = json.load(arquivo)
@@ -79,7 +82,10 @@ class Command(BaseCommand):
           models.save()
       # populando o database com os valores
       lista_dados = []
-      caminho_pasta = 'dados/indice_cardiaco'
+      if(os.name == "nt"):
+            caminho_pasta = 'dados\indice_cardiaco'
+      else:
+            caminho_pasta = 'dados/indice_cardiaco'
         # Obtém a lista de arquivos na pasta
       for nome_arquivo in os.listdir(caminho_pasta):
         caminho_absoluto = os.path.join(caminho_pasta, nome_arquivo)
@@ -105,7 +111,11 @@ class Command(BaseCommand):
         i+=1
 
       lista_dados = []
-      caminho_pasta = 'dados/indice_pulmonar'
+      if(os.name == "nt"):
+        caminho_pasta = 'dados\indice_pulmonar'
+      else:
+        caminho_pasta = 'dados/indice_pulmonar'
+
             # Obtém a lista de arquivos na pasta
       for nome_arquivo in os.listdir(caminho_pasta):
         caminho_absoluto = os.path.join(caminho_pasta, nome_arquivo)
