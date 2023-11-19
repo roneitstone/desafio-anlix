@@ -1,5 +1,4 @@
-<!-- Hospital_Manager/ExportData.html -->
-
+<!-- ExportData.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,57 +7,18 @@
     <title>Exportar Dados</title>
 </head>
 <body>
-    <h2>Dados Exportados</h2>
 
-    <!-- Exibir tabela de Dado_Car -->
-    <h3>Dados Cardíacos</h3>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Índice Cardíaco</th>
-                <th>Data</th>
-                <th>CPF</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for dado_car in dados_car %}
-                <tr>
-                    <td>{{ dado_car.Ind_Card }}</td>
-                    <td>{{ dado_car.data }}</td>
-                    <td>{{ dado_car.cpf }}</td>
+    <h2>Exportar Dados</h2>
 
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
-    <h3>Dados Pulmonares</h3>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Indice Pulmonar</th>
-                <th>Data</th>
-                <th>CPF</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for dado_pulm in dados_pulm %}
-                <tr>
-                    <td>{{ dado_pulm.Ind_Pulm }}</td>]
-                    <td>{{ dado_pulm.data }}</td>
-                    <td>{{ dado_pulm.cpf }}</td>
-
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
-    <h3>Exportar como CSV</h3>
     <form method="post" action="{% url 'ExportData' %}">
         {% csrf_token %}
-        <input type="hidden" name="dados_car" value="{{ dados_car|join:', ' }}">
-        <input type="hidden" name="dados_pulm" value="{{ dados_pulm|join:', ' }}">
-        <button type="submit">Exportar CSV</button>
+        
+        <h3>Selecione os Pacientes:</h3>
+        {{ form.pacientes }}
+
+        <button type="submit">Exportar Dados</button>
     </form>
+
+
 </body>
 </html>

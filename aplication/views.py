@@ -255,23 +255,15 @@ class ChartView(View):
 
             if opcao_selecionada == "cardiaco":
                 objetoscar = Dado_Car.objects.filter(cpf=paciente_cpf)
-                print(objetoscar)
                 lista_ind = list(objetoscar.values_list('Ind_Card', flat=True))
-                print(lista_ind)
 
                 lista_tempo = list(objetoscar.values_list('data', flat=True))
             elif opcao_selecionada == "pulmonar":
                 objetospulm = Dado_Pulm.objects.filter(cpf=paciente_cpf)
                 lista_ind = list(objetospulm.values_list('Ind_Pulm', flat=True))
                 lista_tempo = list(objetospulm.values_list('data', flat=True))
-            print(lista_tempo)
-            # Criar uma lista de dicionários
-            dados_grafico = []
-            #$for tempo, valor_float in zip(lista_tempo, lista_ind):
-           #     dados_grafico.append({'tempo': tempo.strftime('%Y/%m/%d %H:%M:%S'), 'valor_float': valor_float})
 
-            # Converter a lista de dicionários para JSON
-            #dados_grafico_json = json.dumps(dados_grafico)
+            # Criar um context com dados
             context = {
                 "labels": lista_tempo,
                 "values": lista_ind,
@@ -282,30 +274,46 @@ class ChartView(View):
 
         return render(request, self.template_name, {'form': form})
 
+
 class ExportDataView(View):
     template_name = "Hospital_Manager/ExportData.html"
 
     def get(self, request, *args, **kwargs):
         form = ExportForm()
         return render(request, self.template_name, {'form': form})
-    
 
     def post(self, request, *args, **kwargs):
         form = ExportForm(request.POST)
-        # Inicializar listas para armazenar dados
-        dados_car = []
-        dados_pulm = []
-
         if form.is_valid():
             # Processar os dados do formulário
-            pacientes_selecionados = form.POST.get('pacientes')
+            pacientes_selecionados = form.cleaned_data['pacientes']
 
-            for paciente in pacientes_selecionados:
-                dados_car.extend(Dado_Car.objects.filter(cpf=paciente.cpf))
-                dados_pulm.extend(Dado_Pulm.objects.filter(cpf=paciente.cpf))
+            # Criar uma resposta de HTTP com um arquivo CSV
+            response = HttpResponse(content_type='text/csv')
+            response['Content-Disposition'] = 'attachment; filename="dados_exportados.csv"'
 
+            # Configurar o escritor CSV
+            writer = csv.writer(response)
 
-            # Redirecione para a página desejada após processar os dados
-            return render(request, self.template_name, {'dados_car': dados_car, 'dados_pulm': dados_pulm})
+            # Escrever o cabeçalho
+            writer.writerow(['Nome', 'Ind_Card', 'Data_Card', 'Ind_Pulm', 'Data_Pulm'])
+
+            # Iterar sobre os pacientes selecionados
+            for paciente_id in pacientes_selecionados:
+                # Obter objetos Dado_Car e Dado_Pulm para o paciente
+                dados_car = Dado_Car.objects.filter(cpf=paciente_id)
+                dados_pulm = Dado_Pulm.objects.filter(cpf=paciente_id)
+                paciente = get_object_or_404(Paciente, cpf=paciente_id)
+                # Iterar sobre os dados e escrever no CSV
+                for dado_car in dados_car:
+                    
+                    writer.writerow([paciente.nome, dado_car.Ind_Card, dado_car.data, None, None])
+                    print(dado_car.Ind_Card)
+                for dado_pulm in dados_pulm:
+                    writer.writerow([paciente.nome, None, None, dado_pulm.Ind_Pulm, dado_pulm.data])
+
+            return response
 
         return render(request, self.template_name, {'form': form})
+
+

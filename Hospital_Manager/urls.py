@@ -9,5 +9,4 @@ urlpatterns = [
     path('', home, name='home'),
     path('aplication/', include('aplication.urls')),
 
-
 ]

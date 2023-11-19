@@ -38,7 +38,12 @@
             position: absolute;
             top: 70%;
         }
-
+        .button-container3 {
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            top: 60%;
+        }
         a.button {
             padding: 15px 30px;
             background-color: #000000; /* Cor de fundo do botão */
@@ -68,6 +73,9 @@
     </div>
     <div class="button-container2">
         <p></p><a href="{% url 'InfoByDate'%}" class="button">Buscar caracteristicas por data</a></p>
+    </div>
+    <div class="button-container3">
+        <p></p><a href="{% url 'ExportData' %}" class="button">Exportar características</a></p>
     </div>
 </body>
 </html>

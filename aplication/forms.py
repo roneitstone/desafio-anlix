@@ -28,6 +28,6 @@ class ChartForm(forms.Form):
 
 class ExportForm(forms.Form):
     pacientes = forms.MultipleChoiceField(
-        choices=[(paciente.id, paciente.nome) for paciente in Paciente.objects.all()],
+        choices=[(paciente.cpf, paciente.nome) for paciente in Paciente.objects.all()],
         widget=forms.CheckboxSelectMultiple,
     )
