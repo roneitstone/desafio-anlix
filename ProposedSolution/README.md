@@ -66,28 +66,23 @@ Pode ser usado com pip3 e python3 também.***
 ```bash
 
 pip install django djangorestframework
-pip install django djangorestframework
 
 #Depois de instalar, precisa rodar os seguintes comandos:
 
 #Clonar o diretório
 
 git clone https://github.com/roneitstone/desafio-anlix.git
-git clone https://github.com/roneitstone/desafio-anlix.git
 
 #Acessar a pasta ProposedSolution
 
-cd ProposedSolution
 cd ProposedSolution
 
 #Popular a database (Isso pode demorar dependo da potência do servidor)
 
 python manage.py filldatabase
-python manage.py filldatabase
 
 #Quando terminar de popular a database
 
-python manage.py runserver 8000
 python manage.py runserver 8000
 ```
 Ou 
