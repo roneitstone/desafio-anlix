@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <style>
+    /*Configuracoes do estilo da tela*/
         body {
             display: flex;
             align-items: top;
@@ -15,13 +16,13 @@
             height: 100vh;
             margin: 0;
             background-image: url("{% static 'Hospital_Manager/fachada.jpeg' %}");
-            background-size: cover; /* Ajusta a imagem para cobrir toda a tela */
+            background-size: cover; 
             background-position: center; /* Centraliza a imagem */
         }
 
         h1 {
             text-align: center;
-            color: red; /* Define a cor do texto para branco para contrastar com o fundo */
+            color: rgb(63, 63, 63); 
             margin-bottom: 100px;
             position: relative;
         }
@@ -44,20 +45,26 @@
             position: absolute;
             top: 60%;
         }
+        .button-container4 {
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            top: 50%;
+        }
         a.button {
             padding: 15px 30px;
-            background-color: #000000; /* Cor de fundo do botão */
+            background-color: #000000; 
             color: white;
             text-decoration: none;
             border-radius: 50px;
             font-weight: bold;
             font-size: 16px;
-            transition: background-color 0.3s ease; /* Transição suave na mudança de cor de fundo */
+            transition: background-color 0.3s ease; 
         }
 
         /* Efeito de hover para o botão */
         a.button:hover {
-            background-color: #c0392b; /* Cor de fundo ao passar o mouse */
+            background-color: #c0392b; 
         }
     </style>
 </head>
@@ -69,13 +76,16 @@
 
     <!-- Botão estilizado -->
     <div class="button-container">
-        <p></p><a href="{% url 'Buscador' %}" class="button">Buscar</a></p>
+        <p></p><a href="{% url 'Chart' %}" class="button">Gráfico de valores das características</a></p>
     </div>
     <div class="button-container2">
         <p></p><a href="{% url 'InfoByDate'%}" class="button">Buscar caracteristicas por data</a></p>
     </div>
     <div class="button-container3">
         <p></p><a href="{% url 'ExportData' %}" class="button">Exportar características</a></p>
+    </div>
+    <div class="button-container4">
+        <p></p><a href="{% url 'Searcher' %}" class="button">Buscar</a></p>
     </div>
 </body>
 </html>

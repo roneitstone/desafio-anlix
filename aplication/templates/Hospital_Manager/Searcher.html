@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Buscador</title>
+        <title>Searcher</title>
     
         <style>
             body {
@@ -32,7 +32,7 @@
     </head>
     <body>
     
-    <form method="GET" action="{% url 'Buscador' %}">
+    <form method="GET" action="{% url 'Searcher' %}">
         {% csrf_token %}
         <label for="palavra">Pacientes:</label>
         <input type="text" name="palavra" id="palavra_escrita" required>
@@ -46,8 +46,7 @@
         </script>
     <h2>Resultado:</h2>
     {% for paciente in resultados %}
-        <p><a href="{% url 'Detalhes_Paciente' paciente_nome=paciente %}">{{ paciente }}</a></p>
-    <!--<p><a href="{% url 'Entrance' %}">{{nome}}</a></p>-->
+        <p><a href="{% url 'Pacient_Info' paciente_nome=paciente %}">{{ paciente }}</a></p>
     {% endfor %}
 </body>
 </html>

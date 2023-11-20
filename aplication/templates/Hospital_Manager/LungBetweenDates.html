@@ -28,11 +28,6 @@
             margin-left: -5%;
         }
 
-        table {
-            border-collapse: collapse;
-            width: 48%; /* Ajuste para ocupar 48% para dar espaço para a margem */
-            margin: 1%; /* Adicione espaço entre as tabelas */
-        }
 
         th, td {
             border: 1px solid #dddddd;
@@ -53,16 +48,24 @@
         }
 
         #dados-container {
-            display: flex;
-            height: 300px;
-            overflow-y: auto;
-            justify-content: space-between; /* Espaçamento igual entre as tabelas */
+        display: flex;
+        flex-direction: column; /* Para empilhar as tabelas verticalmente */
+        align-items: center; /* Para centralizar na horizontal */
+        height: 300px;
+        overflow-y: auto;
         }
+
+        table {
+            border-collapse: collapse;
+            width: 70%; /* Ajuste conforme necessário */
+            margin: 1%  auto; /* Margem superior e inferior para centralizar */
+        }
+
     </style>
 </head>
 <body>
-    <h2>Selecione a data desejada </h2>
-    <form method="post" action="{% url 'InfoByDate' %}">
+    <h2>Selecione o Intervalo de Datas</h2>
+    <form method="post" action="{% url 'LungBetweenDates' paciente_cpf=paciente_cpf %}">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Buscar Dados</button>
@@ -71,35 +74,13 @@
     <h2>Dados no Intervalo Selecionado</h2>
 
     <div id="dados-container" class="tables">
-        <table>
-            <thead>
-                <tr>
-                    <th>Indice Cardiaco</th>
-                    <th>Data</th>
-                    <th>CPF</th>
-
-                    <!-- Adicione outras colunas conforme necessário -->
-                </tr>
-            </thead>
-            <tbody>
-                {% for dado in objetosCar %}
-                    <tr>
-                        <td>{{ dado.Ind_Card }}</td>
-                        <td>{{ dado.data }}</td>
-                        <td>{{ dado.cpf }}</td>
-
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        
 
         <table>
             <thead>
                 <tr>
                     <th>Indice Pulmonar</th>
                     <th>Data</th>
-                    <th>CPF</th>
-
                 </tr>
             </thead>
             <tbody>
@@ -107,8 +88,6 @@
                     <tr>
                         <td>{{ dado.Ind_Pulm }}</td>
                         <td>{{ dado.data }}</td>
-                        <td>{{ dado.cpf }}</td>
-
                     </tr>
                 {% endfor %}
             </tbody>

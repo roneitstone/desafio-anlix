@@ -81,12 +81,13 @@
 </div>
 <div class="button-container">
 
-    <p> <a href="{% url 'MostRecent' paciente_cpf=paciente.cpf  %}" class="button">Buscar caracteristicas recentes</a></p>
+    <p> <a href="{% url 'HeartMostRecent' paciente_cpf=paciente.cpf  %}" class="button">Buscar caracteristicas recentes coração</a></p>
+    <p> <a href="{% url 'LungMostRecent' paciente_cpf=paciente.cpf  %}" class="button">Buscar caracteristicas recentes pulmão</a></p>
     <p></p><a href="{% url 'Allinfo' paciente_cpf=paciente.cpf  %}" class="button">Buscar todas as caracteristicas</a></p>
-    <p></p><a href="{% url 'BetweenDates' paciente_cpf=paciente.cpf %}" class="button">Buscar caracteristicas por periodo</a></p>
-    <p></p><a href="{% url 'CardBetweenValues' paciente_nome=paciente.nome%}" class="button">Buscar Índice Cardíaco entre valores</a></p>
+    <p></p><a href="{% url 'HeartBetweenDates' paciente_cpf=paciente.cpf %}" class="button">Buscar caracteristicas coração por periodo</a></p>
+    <p></p><a href="{% url 'LungBetweenDates' paciente_cpf=paciente.cpf %}" class="button">Buscar caracteristicas pulmão por periodo</a></p>
+    <p></p><a href="{% url 'HeartBetweenValues' paciente_nome=paciente.nome%}" class="button">Buscar Índice Cardíaco entre valores</a></p>
     <p></p><a href="{% url 'LungBetweenValues' paciente_nome=paciente.nome %}" class="button">Buscar Índice Pulmonar entre valores</a></p>
-    <p></p><a href="{% url 'Chart' %}" class="button">Gráfico de valores das características</a></p>
 
 </div>
 </body>
