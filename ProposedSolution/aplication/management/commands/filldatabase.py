@@ -13,7 +13,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
 
       if(os.name == "nt"):
-            nome_arquivo = '..\dados\pacientes.json'
+            nome_arquivo = '..\\dados\\pacientes.json'
       else:
             nome_arquivo = '../dados/pacientes.json'
         # Obtém a lista de arquivos na pasta  
@@ -82,7 +82,7 @@ class Command(BaseCommand):
       # populando o database com os valores
       lista_dados = []
       if(os.name == "nt"):
-            caminho_pasta = '..\dados\indice_cardiaco'
+            caminho_pasta = '..\\dados\\indice_cardiaco'
       else:
             caminho_pasta = '../dados/indice_cardiaco'
         # Obtém a lista de arquivos na pasta
@@ -111,7 +111,7 @@ class Command(BaseCommand):
 
       lista_dados = []
       if(os.name == "nt"):
-        caminho_pasta = '..\dados\indice_pulmonar'
+        caminho_pasta = '..\\dados\\indice_pulmonar'
       else:
         caminho_pasta = '../dados/indice_pulmonar'
 

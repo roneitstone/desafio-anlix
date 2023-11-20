@@ -90,3 +90,10 @@ python manage.py filldatabase
 python manage.py runserver 8000
 python manage.py runserver 8000
 ```
+Ou 
+
+**Por DockerCompose**
+Devido ao popular inserido na linha de comando, pode demorar para executar, sem o docker, a execução é mais rápida.
+```bash
+docker-compose up
+```
