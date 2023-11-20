@@ -1,4 +1,3 @@
-from typing import Any
 from django.core.management.base import BaseCommand, CommandParser
 from aplication.models import Paciente, Dado_Car, Dado_Pulm
 import json
@@ -14,7 +13,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
 
       if(os.name == "nt"):
-            nome_arquivo = '../dados\pacientes.json'
+            nome_arquivo = '..\dados\pacientes.json'
       else:
             nome_arquivo = '../dados/pacientes.json'
         # Obtém a lista de arquivos na pasta  

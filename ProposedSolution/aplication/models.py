@@ -1,5 +1,9 @@
 from django.db import models
 from datetime import datetime
+
+# Nossos modelos, escolhi dividir os dados cardiacos e dados pulmonares em modelos diferentes, e usei data e epoch, para fins de 
+# verificacao.
+
 class Paciente(models.Model):
     nome = models.CharField(max_length=250)
     idade = models.IntegerField()

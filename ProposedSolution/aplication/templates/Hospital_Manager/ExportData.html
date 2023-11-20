@@ -10,7 +10,7 @@
 
     <h2>Exportar Dados</h2>
 
-    <form method="post" action="{% url 'ExportData' %}">
+    <form method="post" action="{% url 'export' %}">
         {% csrf_token %}
         
         <h3>Selecione os Pacientes:</h3>

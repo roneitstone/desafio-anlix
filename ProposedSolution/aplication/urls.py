@@ -1,21 +1,17 @@
-from django.urls import path
-from .views import Searcher,Patient_Info,LungMostRecent, HeartMostRecent,Allinfo,LungBetweenDates,HeartBetweenDates,InfoByDate,HeartBetweenValues,LungBetweenValues,ExportDataView,ChartView
-from django.contrib import admin
-from django.urls import path
+# No arquivo urls.py dentro do diretório do seu aplicativo
 
+from django.urls import path
+from .views import AllInfo,InfoByDate,HeartBetweenValues,LungBetweenValues,HeartBetweenDates,LungBetweenDates,MostRecent,ChartView,ExportDataView
 
 urlpatterns = [
-    path('Searcher/', Searcher, name='Searcher'),
-    path('Patient_Info/<str:paciente_nome>/', Patient_Info, name='Patient_Info'),
-    path('HeartMostRecent/<str:paciente_cpf>/', HeartMostRecent, name='HeartMostRecent'),
-    path('Allinfo/<str:paciente_cpf>/', Allinfo, name='Allinfo'),
-    path('HeartBetweenDates/<str:paciente_cpf>/', HeartBetweenDates, name='HeartBetweenDates'),
-    path('LungBetweenDates/<str:paciente_cpf>/', LungBetweenDates, name='LungBetweenDates'),
-    path('InfoByDate/', InfoByDate, name='InfoByDate'),
-    path('HeartBetweenValues/<str:paciente_nome>/', HeartBetweenValues, name='HeartBetweenValues'),
-    path('LungBetweenValues/<str:paciente_nome>/', LungBetweenValues, name='LungBetweenValues'),
-    path('Chart/', ChartView.as_view(), name='Chart'),
-    path('ExportData/', ExportDataView.as_view(), name='ExportData'),
-    path('LungMostRecent/<str:paciente_cpf>/', LungMostRecent, name='LungMostRecent'),
+    path('allinfo/<str:cpf>/', AllInfo, name='allinfo'),
+    path('infobydate/<str:data>/', InfoByDate, name='infobydate'),
+    path('heartbetweenvalues/<str:cpf>/<str:intervalo>/', HeartBetweenValues, name='heartbetweenvalues'),
+    path('lungbetweenvalues/<str:cpf>/<str:intervalo>/', LungBetweenValues, name='lungbetweenvalues'),
+    path('heartbetweendates/<str:cpf>/<str:intervalo>/', HeartBetweenDates, name='heartbetweendates'),
+    path('lungbetweendates/<str:cpf>/<str:intervalo>/', LungBetweenDates, name='lungbetweendates'),
+    path('chart/', ChartView.as_view(), name='chart'),
+    path('export/', ExportDataView.as_view(), name='export'),
+    path('mostrecent/<str:nome>/<str:area>/', MostRecent, name='mostrecent'),
 
 ]
