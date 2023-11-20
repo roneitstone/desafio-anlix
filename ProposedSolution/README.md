@@ -21,9 +21,7 @@ localhost:PORT/aplication/allinfo/974.642.524-20/
 
 * [X] Consultar para uma determinada data (dia, mês e ano), todas as características existentes de todos os pacientes da base de dados;
 ```bash
-localhost:PORT/aplication/infobydate/Y-M-D
-#Example:
-localhost:PORT/aplication/infobydate/2021-06-13
+$localhost:PORT/aplication/InfoByDate$
 ```
 
 * [X] Consultar uma característica qualquer de um paciente para um intervalo de datas a ser especificado na chamada da API;
@@ -68,22 +66,27 @@ Pode ser usado com pip3 e python3 também.***
 ```bash
 
 pip install django djangorestframework
+pip install django djangorestframework
 
 #Depois de instalar, precisa rodar os seguintes comandos:
 
 #Clonar o diretório
 
 git clone https://github.com/roneitstone/desafio-anlix.git
+git clone https://github.com/roneitstone/desafio-anlix.git
 
 #Acessar a pasta ProposedSolution
 
+cd ProposedSolution
 cd ProposedSolution
 
 #Popular a database (Isso pode demorar dependo da potência do servidor)
 
 python manage.py filldatabase
+python manage.py filldatabase
 
 #Quando terminar de popular a database
 
+python manage.py runserver 8000
 python manage.py runserver 8000
 ```
