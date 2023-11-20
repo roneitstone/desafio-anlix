@@ -12,7 +12,4 @@ RUN pip install -r requirements.txt
 
 COPY dados /code/dados
 
-#COPY dados /Teste/ProposedSolution/dados
-
-#CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 
