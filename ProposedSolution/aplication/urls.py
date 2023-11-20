@@ -1,12 +1,12 @@
 from django.urls import path
-from .views import Searcher,Pacient_Info,LungMostRecent, HeartMostRecent,Allinfo,LungBetweenDates,HeartBetweenDates,InfoByDate,HeartBetweenValues,LungBetweenValues,ExportDataView,ChartView
+from .views import Searcher,Patient_Info,LungMostRecent, HeartMostRecent,Allinfo,LungBetweenDates,HeartBetweenDates,InfoByDate,HeartBetweenValues,LungBetweenValues,ExportDataView,ChartView
 from django.contrib import admin
 from django.urls import path
 
 
 urlpatterns = [
     path('Searcher/', Searcher, name='Searcher'),
-    path('Pacient_Info/<str:paciente_nome>/', Pacient_Info, name='Pacient_Info'),
+    path('Patient_Info/<str:paciente_nome>/', Patient_Info, name='Patient_Info'),
     path('HeartMostRecent/<str:paciente_cpf>/', HeartMostRecent, name='HeartMostRecent'),
     path('Allinfo/<str:paciente_cpf>/', Allinfo, name='Allinfo'),
     path('HeartBetweenDates/<str:paciente_cpf>/', HeartBetweenDates, name='HeartBetweenDates'),

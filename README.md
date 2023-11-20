@@ -1,5 +1,7 @@
 # Desafio Anlix
 
+**Instruções para usar o projeto dentro da pasta ProposedSolution**
+
 **Sobre o desafio**
 
 Os arquivos texto localizados no diretório dados apresentam diversas características sobre pacientes terminais internados em um hospital, que  são fornecidos por áreas distintas e sempre serão fornecidos separadamente. Os arquivos texto fornecidos por uma mesma área estão nomeados com datas distintas, pois retratam características dos pacientes em diferentes dias. Precisamos que você crie um software que contenha uma base de dados consultável através de uma API REST capaz de:

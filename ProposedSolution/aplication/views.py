@@ -28,11 +28,11 @@ def Searcher(request):
  
     return render(request, './Hospital_Manager/Searcher.html', { 'resultados': nomes_pacientes})
 
-def Pacient_Info(request, paciente_nome):
+def Patient_Info(request, paciente_nome):
 
     paciente = get_object_or_404(Paciente, nome=paciente_nome)
-    print(paciente.nome)
-    return render(request, './Hospital_Manager/Pacient_Info.html', {'paciente': paciente})
+
+    return render(request, './Hospital_Manager/Patient_Info.html', {'paciente': paciente})
 
 def LungMostRecent (request, paciente_cpf):
 
