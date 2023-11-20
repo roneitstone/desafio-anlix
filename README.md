@@ -1,6 +1,14 @@
 # Desafio Anlix
 
+
+
+
+
 **Instruções para usar o projeto dentro da pasta ProposedSolution**
+
+
+
+
 
 **Sobre o desafio**
 
