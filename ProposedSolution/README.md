@@ -1,10 +1,5 @@
 # Desafio Anlix
 
- 
-**Sobre o desafio**
-
-Os arquivos texto localizados no diretório dados apresentam diversas características sobre pacientes terminais internados em um hospital, que  são fornecidos por áreas distintas e sempre serão fornecidos separadamente. Os arquivos texto fornecidos por uma mesma área estão nomeados com datas distintas, pois retratam características dos pacientes em diferentes dias. Precisamos que você crie um software que contenha uma base de dados consultável através de uma API REST capaz de:
-
 * [X] Buscar um paciente por nome e exibir o valor mais recente de cada uma de suas características;
 ```bash
 localhost:PORT/aplication/mostrecent/NomeDoPaciente/Tipo    
@@ -91,4 +86,10 @@ Ou
 Devido ao popular inserido na linha de comando, pode demorar para executar, sem o docker, a execução é mais rápida.
 ```bash
 docker-compose up
+```
+
+**Caso seja necessário apagar os dados database**
+```bash
+# Dentro da ProposedSolution
+python manage.py emptydatabase
 ```
